@@ -9,24 +9,30 @@ public class Solution {
         int[] maxLength = new int[length];
         // 以 x 为末尾的最大递增序列个数
         int[] dp = new int[length];
+        Arrays.fill(dp, 1);
         int result = 0;
         for(int i = 0; i < length; i++){
-            int cnt = 1;
-            int maxLengthCnt = 0;
             for(int j = 0; j < i; j++){
                 if(nums[i] > nums[j]) {
-                    maxLength[i] = Math.max(maxLength[i], maxLength[j] + 1);
-                }
-                if(maxLength[j] > maxLengthCnt) {
-                    cnt = dp[j];
-                } else if(maxLength[j] == maxLengthCnt) {
-                    cnt += dp[j];
+                    if(maxLength[j] + 1 > maxLength[i]) {
+                        maxLength[i] = maxLength[j] + 1;
+                        dp[i] = dp[j];
+                    } else if(maxLength[j] + 1 == maxLength[i]) {
+                        dp[i] += dp[j];
+                    }
                 }
             }
-            dp[i] = cnt;
-            result = Math.max(dp[i], result);
+            result = Math.max(maxLength[i], result);
         }
-        return result;
+        int cnt = 0;
+//        System.out.println(Arrays.toString(dp));
+//        System.out.println(Arrays.toString(maxLength));
+        for(int i = 0; i < length; i++){
+            if(maxLength[i] == result) {
+                cnt += dp[i];
+            }
+        }
+        return cnt;
     }
 
     public static void main(String[] arg){
@@ -35,5 +41,5 @@ public class Solution {
 
 //    public static int[] nums = new int[]{1,3,5,4,7};
     public static int[] nums = new int[]{2,2,2,2,2};
-
+//    public static int[] nums = new int[]{1,2,4,3,5,4,7,2};
 }
