@@ -1,6 +1,5 @@
 package prom198;
 
-import org.omg.CORBA.IRObject;
 
 public class Solution {
     public int rob(int[] nums) {
