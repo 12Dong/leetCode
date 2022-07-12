@@ -51,15 +51,16 @@ public class Solution {
                 nums[index] = tmp[j];
                 j++;
             } else if(j == r + 1) {
+                tmp[i].count += (j - (mid+1));
                 nums[index] = tmp[i];
                 i++;
             } else if(tmp[i].val <= tmp[j].val) {
+                tmp[i].count += (j -(mid+1));
                 nums[index] = tmp[i];
                 i++;
             } else if(tmp[i].val >= tmp[j].val){
                 nums[index] = tmp[j];
                 j++;
-                tmp[i].count +=(j - mid + 1);
             }
          }
 
