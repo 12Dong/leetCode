@@ -38,7 +38,7 @@ class Solution {
         }
 
         if(left != 0 && right != 0) {
-            ans = Math.max(ans, left + right;
+            ans = Math.max(ans, left + right);
         } else if(left == 0) {
             ans = Math.max(ans, right);
         } else if(right == 0) {
