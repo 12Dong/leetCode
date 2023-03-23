@@ -2,7 +2,7 @@ package pro543;
 
 class Solution {
 
-    public class TreeNode {
+    public static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
@@ -15,50 +15,35 @@ class Solution {
         }
     }
 
+
     public int diameterOfBinaryTree(TreeNode root) {
-        if(root == null ) {
-            return 0;
-        }
-        depth = 0;
-        int l = 0;
-        if(root.left != null) {
-            dfs(root.left, 1);
-            l = depth;
-        }
-        depth = 0;
-        int r = 0;
-        if(root.right != null) {
-            dfs(root.right, 1);
-            r = depth;
-        }
-        return l + r;
+        ans = 0;
+        dfs(root);
+        return ans;
     }
 
-    public static int depth;
-    public static void dfs(TreeNode node, int curD) {
+    public static int ans = 0;
+
+    public static int dfs(TreeNode node) {
         if(node.left == null && node.right == null) {
-            depth = Math.max(curD, depth);
-            return;
+            return 1;
         }
+        int left = 0;
         if(node.left != null) {
-            dfs(node.left, curD + 1);
+            left = dfs(node.left);
         }
+        int right = 0;
         if(node.right != null) {
-            dfs(node.right, curD + 1);
+            right = dfs(node.right);
         }
+
+        if(left != 0 && right != 0) {
+            ans = Math.max(ans, left + right);
+        } else if(left == 0) {
+            ans = Math.max(ans, right);
+        } else if(right == 0) {
+            ans = Math.max(ans, left);
+        }
+        return Math.max(left, right) + 1;
     }
 }
-
-/**
- * [4,-7,-3,null,null,-9,-3,9,-7,-4,null,6,null,-6,-6,null,null,0,6,5,null,9,null,null,-1,-4,null,null,null,-2]
- */
-/**
-   4
- -7  -3
-n n -9 -3
-nn nn 9 -7 -4 null
-nnnn nnnn 6 n -6 -6 nn nn
-         n n nn 0 6 5 n
-               9n n-1 -4n
-
- **/
