@@ -1,24 +1,27 @@
 package pro862;
 
+import java.util.ArrayDeque;
+
 public class Solution {
     public int shortestSubarray(int[] nums, int k) {
+        long[] prefix = new long[nums.length + 1];
+        long sum = 0;
+        prefix[0] = sum;
+        for(int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+            prefix[i + 1] = sum;
+        }
         int ans = Integer.MAX_VALUE;
-        int l = 0;
-        int r = 0;
-        int sum =  0;
-        while(r < nums.length && r >= l) {
-            sum += nums[r];
-            r++;
-            if(sum >= k) {
-                ans = Math.min(ans, r - l);
-                while(sum >= k && l < r) {
-                    sum -= nums[l];
-                    l++;
-                    if(sum >= k) {
-                        ans = Math.min(ans, r - l +1);
-                    }
-                }
+        ArrayDeque<Integer> arrayDeque = new ArrayDeque<Integer>();
+        for(int i = 0; i <= nums.length; i++) {
+            while(!arrayDeque.isEmpty() && prefix[i] - prefix[arrayDeque.peekFirst()] >= k) {
+                ans = Math.min(ans, i - arrayDeque.peekFirst());
+                arrayDeque.pollFirst();
             }
+            while(!arrayDeque.isEmpty() && prefix[i] <= prefix[arrayDeque.peekLast()]) {
+                arrayDeque.pollLast();
+            }
+            arrayDeque.addLast(i);
         }
         return ans == Integer.MAX_VALUE ? -1 : ans;
     }
