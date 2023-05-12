@@ -1,4 +1,4 @@
-package leetcode.prom673;
+package leetcode.pro673;
 
 import java.util.Arrays;
 
