@@ -9,19 +9,10 @@ public class Solution {
         for(int i = 0; i < nums.length; i++) {
             strs[i] = "" + nums[i];
         }
-        Arrays.sort(strs, new Comparator<Object>() {
-            @Override
-            public int compare(Object o, Object t1) {
-                String str1 = o.toString();
-                String str2 = t1.toString();
-                String new1 = str1 + str2;
-                String new2 = str2 + str1;
-                return new2.compareTo(new1);
-            }
-        });
+        Arrays.sort(strs);
 
         String ans = "";
-        for(int i = 0; i < strs.length; i++) {
+        for(int i = strs.length -1; i >= 0 ; i--) {
             ans += strs[i];
         }
         int start = 0;
@@ -29,5 +20,9 @@ public class Solution {
             start++;
         }
         return ans.substring(start);
+    }
+
+    public static void main(String[] argv) {
+        System.out.println("3".compareTo("30"));
     }
 }
