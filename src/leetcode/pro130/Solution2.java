@@ -1,7 +1,5 @@
 package leetcode.pro130;
 
-import javafx.util.Pair;
-
 import java.util.LinkedList;
 import java.util.Queue;
 
