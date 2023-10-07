@@ -6,7 +6,7 @@ public class Solution {
         int curr = 1;
         k--;
         while (k > 0) {
-            int steps = findPrefix(curr, n);
+            int steps = getSteps(curr, n);
             if (steps <= k) {
                 k -= steps;
                 curr++;
@@ -17,23 +17,6 @@ public class Solution {
         }
         return curr;
     }
-
-    //    public int findKthNumber(int n, int k) {
-//        int prefix = 1;
-//        k--;
-//        while(k > 0) {
-//            int steps = getSteps(prefix, k);
-//            if(steps <= k) {
-//                k -= steps;
-//                prefix++;
-//            } else {
-//                prefix *= 10;
-//                k--;
-//            }
-//        }
-//        return prefix;
-//    }
-
 
     public int findPrefix(int prefix, int n) {
         int count = 0;
@@ -59,6 +42,6 @@ public class Solution {
     }
 
     public static void main(String[] argv) {
-        System.out.println(new Solution().findKthNumber(25, 11));
+        System.out.println(new Solution().findKthNumber(681692778, 351251360));
     }
 }
