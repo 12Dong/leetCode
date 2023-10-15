@@ -1,5 +1,8 @@
 package leetcode.pro470;
 
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
 public class Solution3 {
     public int rand10() {
         while(true) {
