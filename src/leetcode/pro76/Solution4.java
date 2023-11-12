@@ -63,6 +63,6 @@ public class Solution4 {
     }
 
     public static void main(String[] argv) {
-        new Solution4().minWindow("ADOBECODEBANC", "ABC");
+        new Solution4().minWindow("aaa", "a");
     }
 }
