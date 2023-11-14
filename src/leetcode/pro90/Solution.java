@@ -1,30 +1,36 @@
 package leetcode.pro90;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Solution {
     public List<List<Integer>> subsetsWithDup(int[] nums) {
-        List<List<Integer>> ans = new LinkedList<>();
+        Set<List<Integer>> ans = new HashSet<>();
         Arrays.sort(nums);
-        dfs(nums, 0, new LinkedList<>(), ans);
-        return ans;
+        dfs(nums, 0, new LinkedList<>(), ans, new HashSet<>());
+        return new LinkedList<>(ans);
     }
 
-    public void dfs(int[] nums, int curL, List<Integer> list, List<List<Integer>> ans) {
-        if(curL ==nums.length) {
-            ans.add(new LinkedList<>(list));
+    public void dfs(int[] nums, int index, List<Integer> cur, Set<List<Integer>> ans, Set<List<Integer>> vis) {
+        if(index == nums.length) {
+            ans.add(new LinkedList<>(cur));
             return;
         }
-        for(int i = curL; i < nums.length; i++) {
-            if(i > curL && nums[i] == nums[i - 1]) {
+        for(int i = index; i < nums.length; i++) {
+            if(i > index && nums[i] == nums[i - 1]) {
                 continue;
             }
-            list.add(nums[i]);
-            dfs(nums, i + 1, list, ans);
-            list.remove(list.size() - 1);
+            // 选中 i
+            cur.add(nums[i]);
+            // 其他路径访问过
+            if(vis.contains(cur)) {
+
+            } else {
+                vis.add(cur);
+                dfs(nums, i + 1, cur, ans, vis);
+            }
+            cur.remove(cur.size() - 1);
+            // 不选 i
+//            dfs(nums, i + 1, cur, ans, vis);
         }
-        dfs(nums, nums.length, list, ans);
     }
 }

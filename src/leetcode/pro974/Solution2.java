@@ -26,7 +26,7 @@ public class Solution2 {
 //        System.out.println(new Solution2().subarraysDivByK(new int[]{0,0,0}, 2));
 //        System.out.println(new Solution2().subarraysDivByK(new int[]{4,5,0,-2,-3,1}, 5));
 //        System.out.println(new Solution2().subarraysDivByK(new int[]{5}, 9));
-        System.out.println(new Solution2().subarraysDivByK(new int[]{7, 4, -10}, 5));
+        System.out.println(new Solution2().subarraysDivByK(new int[]{4,3}, 5));
 
     }
 }
