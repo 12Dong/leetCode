@@ -11,14 +11,14 @@ public class Solution2 {
             if(minStack.isEmpty()) {
                 minStack.add(i);
             } else {
-                while(!minStack.isEmpty() && height[i] > height[minStack.peek()]) {
-                    int index = minStack.pop();
-                    // 宽 * 高
-                    if(minStack.isEmpty()) {
-                        continue;
+                while(!minStack.isEmpty() && height[minStack.peek()] < height[i]) {
+                    int bottom = height[minStack.pop()];
+                    if(!minStack.isEmpty()) {
+                        int h = Math.min(height[minStack.peek()], height[i]) - bottom;
+                        int r = i;
+                        int l = minStack.peek();
+                        ans += (h * (r - l - 1));
                     }
-                    int addition = (i - minStack.peek() - 1) * (Math.min(height[minStack.peek()], height[i]) - height[index]);
-                    ans += addition;
                 }
                 minStack.add(i);
             }
@@ -27,6 +27,6 @@ public class Solution2 {
     }
 
     public static void main(String[] argv) {
-        new Solution2().trap(new int[]{0,1,0,2,1,0,1});
+        new Solution2().trap(new int[]{0,1,0,2,1,0,1,3,2,1,2,1});
     }
 }

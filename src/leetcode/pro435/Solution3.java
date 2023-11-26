@@ -5,7 +5,6 @@ import java.util.Comparator;
 
 public class Solution3 {
     public int eraseOverlapIntervals(int[][] intervals) {
-        ThreadLocal
         Arrays.sort(intervals, new Comparator<int[]>() {
             @Override
             public int compare(int[] o1, int[] o2) {
